@@ -23,19 +23,19 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
     expect(page.body =~/#{e1}.*#{e2}/m).to be >= 0
   else
     assert page.body =~ /#{e1}.*#{e2}/m
-  end  
-  # fail "Unimplemented"
+  end
 end
-
 
 Then /I should (not)?see movies with titles: (.*)/ do |not_see, titles|
   titles.split(/,\s?/).each do |title|
     if page.respond_to? :should
       if !!not_see
+
         page.should not(have_content(text))
       else
         page.should have_content(text)
       end
+
     else
       if !!not_see
         assert !page.has_content?(text)
