@@ -30,12 +30,10 @@ Then /I should (not)?see movies with titles: (.*)/ do |not_see, titles|
   titles.split(/,\s?/).each do |title|
     if page.respond_to? :should
       if !!not_see
-
         page.should not(have_content(text))
       else
         page.should have_content(text)
       end
-
     else
       if !!not_see
         assert !page.has_content?(text)
